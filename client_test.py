@@ -28,7 +28,31 @@ class ClientTest(unittest.TestCase):
         """ ------------ Add the assertion below ------------ """
 
     """ ------------ Add more unit tests ------------ """
+    def test_getDataPointPriceBZero(self):
+        price_a = 145.2
+        price_b = 0
+        self.assertIsNone(getRatio(price_a, price_b))
 
+    def test_getRatioPriceAZero(self):
+        price_a = 0
+        price_b = 132.2
+        self.assertEqual(getRatio(price_a, price_b), 0)
+
+    def test_getRatioGreaterthan1(self):
+        price_a = 143.3
+        price_b = 132.1
+        self.assertGreater(getRatio(price_a, price_b), 1)
+
+    def test_getRatioLessthan1(self):
+        price_a = 123.3
+        price_b = 132.2
+        self.assertLess(getRatio(price_a, price_b), 1)
+
+    def test_getRatioEqual1(self):
+        price_a = 123.2
+        price_b = 123.2
+        self.assertEqual(getRatio(price_a, price_b), 1)
+        
 
 if __name__ == '__main__':
     unittest.main()
